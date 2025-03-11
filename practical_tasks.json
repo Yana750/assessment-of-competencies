@@ -1,0 +1,50 @@
+[
+    {
+        "difficulty": "Обычная",
+        "description": "Заполните пропущенное слово для объявления переменной.",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        appBar: AppBar(title: Text('Flutter Test')),\n        body: Column(\n          crossAxisAlignment: CrossAxisAlignment.start,\n          children: [\n            ElevatedButton(\n              onPressed: () {\n                ___ message = \"Привет\";\n                print(message);\n              },\n              child: Text('Нажми меня!'),\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "var"
+    },
+    {
+        "difficulty": "Обычная",
+        "description": "Данное задание должен вывести простое приложение с текстом 'Привет' в центре экрана. Заполните пропущенное слово для отображения текста в виджете Text.",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: Text(___),\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "'Привет'"
+    },
+    {
+        "difficulty": "Обычная",
+        "description": "Какая функция пропущена для отображения информации?",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        appBar: AppBar(title: Text('Flutter Test')),\n        body: Center(\n          child: ElevatedButton(\n            onPressed: () {\n              ______('Кнопка нажата');\n            },\n            child: Text('Нажмите'),\n          ),\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "print"
+    },
+    {
+        "difficulty": "Средняя",
+        "description": "Какой тип данных отсутствует?",
+        "code": "import 'package:flutter/material.dart';\n\n_______ main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: ElevatedButton(\n            onPressed: myFunction,\n            child: Text('Нажми меня'),\n          ),\n        ),\n      ),\n    );\n  }\n}\n\nvoid myFunction() {\n  print('Функция вызвана');\n}",
+        "answer": "void"
+    },
+    {
+        "difficulty": "Средняя",
+        "description": "Добавьте метод для обработки нажатия на кнопку.",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: Column(\n            children: [\n              Text('Введите имя:'),\n              TextField(\n                onChanged: (value) {\n                  print(___);\n                },\n              ),\n            ],\n          ),\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "value"
+    },
+    {
+        "difficulty": "Средняя",
+        "description": "Заполните пропуски в коде, чтобы класс был корректно определён. Напишите ответ через запятую с маленькой буквы",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\n______ MyApp ______ StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: Center(\n          child: Column(\n            mainAxisAlignment: MainAxisAlignment.center,\n            children: [\n              Text('Счетчик: \\$counter'),\n              ElevatedButton(\n                onPressed: incrementCounter,\n                child: Text('Увеличить'),\n              ),\n            ],\n          ),\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "class, extends"
+    },
+    {
+        "difficulty": "Сложная",
+        "description": "В коде ниже есть пропуск. Вам нужно правильно заполнить его, чтобы приложение корректно работало. В частности, нужно правильно реализовать метод, который создаёт состояние для виджета MyWidget. Заполните пропуск.",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: MyWidget(),\n      ),\n    );\n  }\n}\n\nclass MyWidget extends StatefulWidget {\n  @override\n  _MyWidgetState _________() => _MyWidgetState();\n}\n\nclass _MyWidgetState extends State<MyWidget> {\n  String text = 'Начальный текст';\n\n  void updateText() {\n    setState(() {\n      text = 'Новый текст';\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Center(\n      child: Column(\n        children: [\n          Text(text),\n          ElevatedButton(\n            onPressed: updateText,\n            child: Text('Обновить текст'),\n          ),\n        ],\n      ),\n    );\n  }\n}",
+        "answer": "createState"
+    },
+    {
+        "difficulty": "Сложная",
+        "description": "В коде ниже пропущен метод, который позволяет преобразовать число в строку. Вам нужно правильно заполнить пропуск, чтобы приложение корректно работало.",
+        "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        body: ListView.builder(\n          itemCount: 10,\n          itemBuilder: (context, index) {\n            return ListTile(\n              title: Text('Элемент ' + (index + 1)._______),\n            );\n          },\n        ),\n      ),\n    );\n  }\n}",
+        "answer": "toString()"
+    }
+]

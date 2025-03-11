@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Главная страница</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Добро пожаловать в систему тестирования</h1>
+        <p>Выберите раздел:</p>
+        <a href="/quiz"><button>Тестирование</button></a>
+        <a href="/practical"><button>Практическое задание</button></a>
+        <!--<a href="/case"><button>Кейс-задача</button></a>-->
+        <!--<a href="/project"><button>Проект</button></a>-->
+    </div>
+</body>
+
+</html>

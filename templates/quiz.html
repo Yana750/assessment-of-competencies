@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Тестирование</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .question-box.unanswered {
+            border: 2px solid red;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/"><button class="back-btn">← Назад</button></a>
+            <h1>Прохождение теста</h1>
+        </div>
+        {% if message %}
+        <p class="error">{{ message }}</p>
+        {% endif %}
+        <form method="POST" action="/quiz">
+            {% for question in questions %}
+            <div class="question-box {% if question.question in unanswered %}unanswered{% endif %}">
+                <p class="question">{{ question.question }}</p>
+                {% for option in question.options %}
+                <label class="option-label">
+                    <input type="radio" name="{{ question.question }}" value="{{ option }}" {% if
+                        user_answers.get(question.question)==option %}checked{% endif %}>
+                    {{ option }}
+                </label><br>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Отправить</button>
+        </form>
+    </div>
+</body>
+
+</html>

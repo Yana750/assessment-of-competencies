@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Результаты практического задания</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/"><button class="back-btn">← Назад</button></a>
+            <h1>Результаты</h1>
+        </div>
+        <p>Вы правильно ответили на <strong>{{ correct_count }}</strong> из <strong>{{ total_questions }}</strong>
+            вопросов.</p>
+        <p>Ваш результат: <strong>{{ percentage }}%</strong></p>
+        <a href="/practical"><button>Попробовать снова</button></a>
+    </div>
+</body>
+
+</html>
