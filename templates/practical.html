@@ -12,26 +12,60 @@
             <a href="/"><button class="back-btn">← Назад</button></a>
             <h1>Практическое задание</h1>
         </div>
-        <form action="/practical" method="POST">
-            {% set grouped_tasks = {'Обычная': [], 'Средняя': [], 'Сложная': []} %}
-            {% for task in tasks %}
-            {% set _ = grouped_tasks[task.difficulty].append(task) %}
-            {% endfor %}
 
-            {% for level, level_tasks in grouped_tasks.items() %}
-            <h2>Сложность: {{ level }}</h2>
-            {% for i, task in enumerate(level_tasks) %}
-            <div class="task">
-                <p><strong>Задание {{ i+1 }}:</strong> {{ task.description }}</p>
-                <pre style="text-align: left;">{{ task.code }}</pre>
-                <label for="answer_{{ i }}">Введите ответ:</label><br>
-                <input type="text" name="answer_{{ i }}" required><br>
+        <form method="POST" action="/practical">
+            <div class="difficulty-container">
+                <label for="difficulty" class="difficulty-title">Выберите сложность:</label>
+                <select name="difficulty" id="difficulty" onchange="loadTasks()">
+                    <option value="">-- Выберите сложность --</option>
+                    {% for level in tasks.keys() %}
+                    <option value="{{ level }}">{{ level }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            {% endfor %}
-            {% endfor %}
-            <button type="submit">Отправить ответы</button>
+
+            <div id="tasks-container">
+                {% for level, level_tasks in tasks.items() %}
+                <div class="tasks" id="{{ level }}" style="display: none;">
+                    <h2 class="difficulty-title">{{ level }}</h2>
+
+                    {% for task in level_tasks %}
+                    <div class="task-box">
+                        <div class="task-container">
+                            <div class="task-description">
+                                <p class="question">{{ task["description"] }}</p>
+                            </div>
+                            {% if "code" in task %}
+                            <div class="task-code">
+                                <pre class="code-block">{{ task["code"] }}</pre>
+                            </div>
+                            {% endif %}
+                            <div class="task-input">
+                                <input type="text" name="{{ task['description'] }}" class="input-field"
+                                    placeholder="Введите ответ">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="submit-btn">Завершить</button>
         </form>
     </div>
+
+    <script>
+        function loadTasks() {
+            let selectedLevel = document.getElementById("difficulty").value;
+            document.querySelectorAll(".tasks").forEach(taskDiv => {
+                taskDiv.style.display = "none";
+            });
+            if (selectedLevel) {
+                document.getElementById(selectedLevel).style.display = "block";
+            }
+        }
+    </script>
 </body>
 
 </html>

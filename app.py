@@ -47,15 +47,35 @@ def quiz():
     
     return render_template('quiz.html', questions=questions, unanswered=[], user_answers={}) 
 
-@app.route("/practical", methods=["GET", "POST"])
+@app.route('/practical', methods=['GET', 'POST'])
 def practical():
-    tasks = load_practical_tasks()  # Загружаем задания
-    
+    tasks = load_practical_tasks()
+    user_answers = {}
     if request.method == "POST":
-        # Здесь будет обработка ответов
-        pass
-    
-    return render_template("practical.html", tasks=tasks, enumerate=enumerate)  # Передаем tasks
+        answers = request.form.to_dict()
+        correct_count = 0
+        total_tasks = len(tasks.get(request.form['difficulty'], []))
+
+        for task in tasks.get(request.form['difficulty'], []):
+            question = task["description"]
+            correct_answer = task["answer"].strip()
+            user_answer = answers.get(question, "").strip()
+            user_answers[question] = user_answer
+
+            if not user_answer:  # Если пользователь не ответил
+                continue  # Просто пропускаем этот вопрос
+
+            if user_answer == correct_answer:
+                correct_count += 1
+            elif user_answer in correct_answer:
+                correct_count += 0.5
+
+        q1 = correct_count / total_tasks if total_tasks > 0 else 0
+        k2 = 70 * q1
+
+        return render_template('practical_result.html', k2=k2, q1=q1)
+
+    return render_template('practical.html', tasks=tasks, enumerate=enumerate)
 
 if __name__ == "__main__":
     app.run(debug=True)
