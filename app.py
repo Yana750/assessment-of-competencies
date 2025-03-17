@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
 app = Flask(__name__)
-app.secret_key = '062548ddaee0416eebce748db07012f1'  # Вставьте ваш секретный ключ
+app.secret_key = ''  # Вставьте ваш секретный ключ
 
 def load_questions():
     with open("questions.json", "r", encoding="utf-8") as f:
